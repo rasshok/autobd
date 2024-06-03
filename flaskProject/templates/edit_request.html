@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Edit Request</h2>
+<form method="POST">
+    <label for="problem_description">Problem Description:</label>
+    <textarea id="problem_description" name="problem_description">{{ request[5] }}</textarea>
+
+    <label for="status">Status:</label>
+    <select id="status" name="status">
+        <option value="new" {% if request[7] == 'new' %}selected{% endif %}>New</option>
+        <option value="in_progress" {% if request[7] == 'in_progress' %}selected{% endif %}>In Progress</option>
+        <option value="waiting_for_parts" {% if request[7] == 'waiting_for_parts' %}selected{% endif %}>Waiting for Parts</option>
+        <option value="ready_for_pickup" {% if request[7] == 'ready_for_pickup' %}selected{% endif %}>Ready for Pickup</option>
+        <option value="completed" {% if request[7] == 'completed' %}selected{% endif %}>Completed</option>
+    </select>
+
+    <label for="assigned_mechanic">Assigned Mechanic:</label>
+    <input type="text" id="assigned_mechanic" name="assigned_mechanic" value="{{ request[8] }}">
+
+    <button type="submit">Update Request</button>
+</form>
+{% endblock %}
